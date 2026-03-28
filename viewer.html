@@ -9,28 +9,30 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
     <!-- Reading Progress Bar -->
-    <div class="reading-progress" id="readingProgress"></div>
+    <div class="reading-progress" id="readingProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="התקדמות קריאה"></div>
 
     <!-- Navbar -->
-    <nav class="viewer-navbar">
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-right"></i>
+    <nav class="viewer-navbar" aria-label="ניווט מסמך">
+        <a href="index.html" class="back-btn" aria-label="חזרה לרשימת התיקים">
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
             <span>חזרה</span>
         </a>
-        <div class="doc-title" id="docTitle">טוען מסמך...</div>
+        <h1 class="doc-title" id="docTitle">טוען מסמך...</h1>
         <div class="nav-actions">
-            <button id="editModeToggle" title="מצב עריכה">
-                <i class="fas fa-pen"></i>
+            <button id="editModeToggle" title="מצב עריכה" aria-label="מצב עריכה" aria-pressed="false">
+                <i class="fas fa-pen" aria-hidden="true"></i>
             </button>
-            <button class="sidebar-toggle" id="sidebarToggle" title="תוכן עניינים">
-                <i class="fas fa-list"></i>
+            <button class="sidebar-toggle" id="sidebarToggle" title="תוכן עניינים" aria-label="הצג תוכן עניינים" aria-expanded="false">
+                <i class="fas fa-list" aria-hidden="true"></i>
             </button>
-            <button id="themeToggle" title="החלף ערכת נושא">
-                <i class="fas fa-sun"></i>
+            <button id="themeToggle" title="החלף ערכת נושא" aria-label="החלף ערכת נושא">
+                <i class="fas fa-sun" aria-hidden="true"></i>
             </button>
-            <button id="printBtn" title="הדפסה">
-                <i class="fas fa-print"></i>
+            <button id="printBtn" title="הדפסה" aria-label="הדפסה">
+                <i class="fas fa-print" aria-hidden="true"></i>
             </button>
         </div>
     </nav>
@@ -42,62 +44,64 @@
     <div class="viewer-layout">
         <!-- Content Area -->
         <main class="viewer-content" id="contentArea">
-            <div id="editModeBanner" class="edit-mode-banner" style="display:none;">
-                <i class="fas fa-pen"></i> מצב עריכה — לחץ על הטקסט כדי לערוך
+            <div id="editModeBanner" class="edit-mode-banner" style="display:none;" role="status">
+                <i class="fas fa-pen" aria-hidden="true"></i> מצב עריכה — לחץ על הטקסט כדי לערוך
             </div>
-            <div id="chapterContent">
+            <div id="main-content">
+                <div id="chapterContent">
+                </div>
             </div>
 
             <!-- Chapter Navigation -->
-            <div class="chapter-nav" id="chapterNav">
-                <button class="chapter-nav-btn" id="nextChapterBtn">
-                    <i class="fas fa-arrow-right"></i>
+            <div class="chapter-nav" id="chapterNav" role="navigation" aria-label="ניווט בין פרקים">
+                <button class="chapter-nav-btn" id="nextChapterBtn" aria-label="הפרק הבא">
+                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
                     <div>
                         <span class="nav-label">הפרק הבא</span>
                         <span class="nav-title" id="nextChapterTitle"></span>
                     </div>
                 </button>
-                <button class="chapter-nav-btn" id="prevChapterBtn">
+                <button class="chapter-nav-btn" id="prevChapterBtn" aria-label="הפרק הקודם">
                     <div>
                         <span class="nav-label">הפרק הקודם</span>
                         <span class="nav-title" id="prevChapterTitle"></span>
                     </div>
-                    <i class="fas fa-arrow-left"></i>
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
                 </button>
             </div>
         </main>
 
         <!-- Sidebar (TOC) -->
-        <aside class="viewer-sidebar" id="sidebar">
-            <div class="sidebar-tabs">
-                <button class="sidebar-tab active" data-tab="toc"><i class="fas fa-bookmark"></i> תוכן עניינים</button>
-                <button class="sidebar-tab" data-tab="entities"><i class="fas fa-tags"></i> ישויות</button>
+        <aside class="viewer-sidebar" id="sidebar" aria-label="סרגל צד">
+            <div class="sidebar-tabs" role="tablist" aria-label="תצוגת סרגל צד">
+                <button class="sidebar-tab active" data-tab="toc" role="tab" aria-selected="true" aria-controls="tocTab" id="tab-toc"><i class="fas fa-bookmark" aria-hidden="true"></i> תוכן עניינים</button>
+                <button class="sidebar-tab" data-tab="entities" role="tab" aria-selected="false" aria-controls="entitiesTab" id="tab-entities"><i class="fas fa-tags" aria-hidden="true"></i> ישויות</button>
             </div>
-            <div class="sidebar-tab-content" id="tocTab">
-                <ul class="toc-list" id="tocList">
+            <div class="sidebar-tab-content" id="tocTab" role="tabpanel" aria-labelledby="tab-toc">
+                <ul class="toc-list" id="tocList" role="list" aria-label="תוכן עניינים">
                 </ul>
-                <button class="btn-add-chapter" id="addChapterBtn" style="display:none;">
-                    <i class="fas fa-plus"></i> הוסף פרק
+                <button class="btn-add-chapter" id="addChapterBtn" style="display:none;" aria-label="הוסף פרק חדש">
+                    <i class="fas fa-plus" aria-hidden="true"></i> הוסף פרק
                 </button>
             </div>
-            <div class="sidebar-tab-content" id="entitiesTab" style="display:none;">
+            <div class="sidebar-tab-content" id="entitiesTab" style="display:none;" role="tabpanel" aria-labelledby="tab-entities">
                 <div id="entitiesList"></div>
             </div>
         </aside>
     </div>
 
     <!-- PDF Modal -->
-    <div class="pdf-modal-overlay" id="pdfModal">
+    <div class="pdf-modal-overlay" id="pdfModal" role="dialog" aria-modal="true" aria-labelledby="pdfModalTitle">
         <div class="pdf-modal">
             <div class="pdf-modal-header">
-                <h4 id="pdfModalTitle">מסמך</h4>
-                <button class="close-btn" id="pdfModalClose">
-                    <i class="fas fa-times"></i>
+                <h2 id="pdfModalTitle">מסמך</h2>
+                <button class="close-btn" id="pdfModalClose" aria-label="סגור">
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
             </div>
             <div class="pdf-modal-body" id="pdfModalBody">
                 <div class="pdf-placeholder">
-                    <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-file-pdf" aria-hidden="true"></i>
                     <p>המסמך אינו זמין כעת</p>
                 </div>
             </div>
@@ -105,24 +109,24 @@
     </div>
 
     <!-- Chapter Modal -->
-    <div class="modal-overlay" id="chapterModal">
+    <div class="modal-overlay" id="chapterModal" role="dialog" aria-modal="true" aria-labelledby="chapterModalTitle">
         <div class="modal-box modal-wide">
             <div class="modal-header">
-                <h4 id="chapterModalTitle">הוסף פרק חדש</h4>
-                <button class="close-btn" id="chapterModalClose"><i class="fas fa-times"></i></button>
+                <h2 id="chapterModalTitle">הוסף פרק חדש</h2>
+                <button class="close-btn" id="chapterModalClose" aria-label="סגור"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="chapterEditId">
                 <div class="form-group">
-                    <label>מזהה (באנגלית, ללא רווחים)</label>
+                    <label for="chapterIdInput">מזהה (באנגלית, ללא רווחים)</label>
                     <input type="text" id="chapterIdInput" placeholder="chapter-intro" dir="ltr">
                 </div>
                 <div class="form-group">
-                    <label>כותרת הפרק</label>
+                    <label for="chapterTitleInput">כותרת הפרק</label>
                     <input type="text" id="chapterTitleInput" placeholder="מבוא">
                 </div>
                 <div class="form-group">
-                    <label>אייקון</label>
+                    <label for="chapterIconSelect">אייקון</label>
                     <select id="chapterIconSelect">
                         <option value="fa-bookmark">סימניה</option>
                         <option value="fa-book">ספר</option>
@@ -137,19 +141,19 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>תוכן (HTML)</label>
+                    <label for="chapterContentInput">תוכן (HTML)</label>
                     <textarea id="chapterContentInput" rows="12" placeholder="<p>תוכן הפרק כאן...</p>"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-cancel" id="chapterModalCancel">ביטול</button>
-                <button class="btn-save" id="chapterModalSave"><i class="fas fa-check"></i> שמור</button>
+                <button class="btn-save" id="chapterModalSave"><i class="fas fa-check" aria-hidden="true"></i> שמור</button>
             </div>
         </div>
     </div>
 
     <!-- Keyboard Shortcuts Hint -->
-    <div class="kbd-hint" id="kbdHint">
+    <div class="kbd-hint" id="kbdHint" aria-hidden="true">
         <kbd>&rarr;</kbd> פרק קודם &nbsp; <kbd>&larr;</kbd> פרק הבא &nbsp; <kbd>Esc</kbd> סגור
     </div>
 

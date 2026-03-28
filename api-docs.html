@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,59 +9,62 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="api-docs-bg">
         <div class="container" style="max-width: 900px;">
-            <a href="index.html" class="api-back-link"><i class="fas fa-arrow-right"></i> חזרה לעמוד הראשי</a>
+            <a href="index.html" class="api-back-link" lang="he"><i class="fas fa-arrow-right" aria-hidden="true"></i> חזרה לעמוד הראשי</a>
+
+            <main id="main-content">
 
             <div class="api-docs-header">
-                <h1><i class="fas fa-book" style="color: var(--accent); margin-left: 10px;"></i>API Documentation</h1>
+                <h1><i class="fas fa-book" aria-hidden="true" style="color: var(--accent); margin-left: 10px;"></i>API Documentation</h1>
                 <p>REST API for managing cases, documents, and chapters</p>
                 <p style="font-size: 0.82rem; color: var(--text-muted); direction: ltr;">Base URL: <code>http://localhost:8080/api</code></p>
             </div>
 
             <!-- Cases -->
             <div class="api-section">
-                <h2><i class="fas fa-briefcase" style="margin-left: 8px;"></i>Cases</h2>
+                <h2><i class="fas fa-briefcase" aria-hidden="true" style="margin-left: 8px;"></i>Cases</h2>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases</span>
                         <span class="api-desc">List all cases</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Response</h5>
+                        <h3>Response</h3>
                         <div class="api-code">{ "cases": [{ "id": "omar-duanias", "title": "...", "subtitle": "...", "icon": "fa-gavel", "documents": [...] }] }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases/:caseId</span>
                         <span class="api-desc">Get single case</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Response</h5>
+                        <h3>Response</h3>
                         <div class="api-code">{ "id": "omar-duanias", "title": "...", "subtitle": "...", "icon": "fa-gavel", "documents": [...] }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-post">POST</span>
                         <span class="api-path">/api/cases</span>
                         <span class="api-desc">Create a new case</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{
   "id": "my-case",
   "title": "Case Title",
@@ -69,7 +72,7 @@
   "icon": "fa-gavel",
   "documents": []
 }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X POST http://localhost:8080/api/cases \
   -H "Content-Type: application/json" \
   -d '{"id":"my-case","title":"Case Title","subtitle":"123/2025","documents":[]}'</div>
@@ -77,16 +80,16 @@
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-put">PUT</span>
                         <span class="api-path">/api/cases/:caseId</span>
                         <span class="api-desc">Update case metadata</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "title": "New Title", "subtitle": "New Subtitle", "icon": "fa-balance-scale" }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X PUT http://localhost:8080/api/cases/my-case \
   -H "Content-Type: application/json" \
   -d '{"title":"Updated Title"}'</div>
@@ -94,14 +97,14 @@
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-delete">DELETE</span>
                         <span class="api-path">/api/cases/:caseId</span>
                         <span class="api-desc">Delete case and all its files</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/my-case</div>
                     </div>
                 </div>
@@ -109,32 +112,32 @@
 
             <!-- Documents -->
             <div class="api-section">
-                <h2><i class="fas fa-file-alt" style="margin-left: 8px;"></i>Documents</h2>
+                <h2><i class="fas fa-file-alt" aria-hidden="true" style="margin-left: 8px;"></i>Documents</h2>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases/:caseId/docs</span>
                         <span class="api-desc">List documents in a case</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-post">POST</span>
                         <span class="api-path">/api/cases/:caseId/docs</span>
                         <span class="api-desc">Add a document to a case</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "id": "my-doc", "title": "Document Title", "date": "2025" }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X POST http://localhost:8080/api/cases/omar-duanias/docs \
   -H "Content-Type: application/json" \
   -d '{"id":"my-doc","title":"Document Title","date":"2025"}'</div>
@@ -142,66 +145,66 @@
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId</span>
                         <span class="api-desc">Get full document (meta, entities, chapters)</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-put">PUT</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId</span>
                         <span class="api-desc">Replace entire document JSON</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "meta": {...}, "entities": {...}, "chapters": [...] }</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-patch">PATCH</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/meta</span>
                         <span class="api-desc">Update document metadata</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "title": "New Document Title", "author": "Name" }</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-patch">PATCH</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/entities</span>
                         <span class="api-desc">Update document entities</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "people": [...], "organizations": [...] }</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-delete">DELETE</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId</span>
                         <span class="api-desc">Delete document and its files</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/omar-duanias/docs/my-doc</div>
                     </div>
                 </div>
@@ -209,43 +212,43 @@
 
             <!-- Chapters -->
             <div class="api-section">
-                <h2><i class="fas fa-bookmark" style="margin-left: 8px;"></i>Chapters</h2>
+                <h2><i class="fas fa-bookmark" aria-hidden="true" style="margin-left: 8px;"></i>Chapters</h2>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters</span>
                         <span class="api-desc">List all chapters</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-get">GET</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
                         <span class="api-desc">Get single chapter</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/intro</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-post">POST</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters</span>
                         <span class="api-desc">Add a new chapter</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{
   "id": "new-chapter",
   "title": "Chapter Title",
@@ -253,7 +256,7 @@
   "content": "&lt;p&gt;Chapter HTML content&lt;/p&gt;",
   "after": "intro"          // optional: insert after this chapter
 }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X POST http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters \
   -H "Content-Type: application/json" \
   -d '{"id":"new-ch","title":"New Chapter","content":"&lt;p&gt;Content&lt;/p&gt;"}'</div>
@@ -261,48 +264,49 @@
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-put">PUT</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
                         <span class="api-desc">Update chapter content/title/icon</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "title": "New Title", "icon": "fa-gavel", "content": "&lt;p&gt;Updated content&lt;/p&gt;" }</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-delete">DELETE</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
                         <span class="api-desc">Delete a chapter</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/new-ch</div>
                     </div>
                 </div>
 
                 <div class="api-endpoint">
-                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                    <div class="api-endpoint-header" tabindex="0" role="button" aria-expanded="false" onclick="var b=this.nextElementSibling;b.classList.toggle('open');this.setAttribute('aria-expanded',b.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
                         <span class="api-method method-patch">PATCH</span>
                         <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/reorder</span>
                         <span class="api-desc">Reorder chapters</span>
-                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                        <i class="fas fa-chevron-down" aria-hidden="true" style="color: var(--text-muted); font-size: 0.7rem;"></i>
                     </div>
                     <div class="api-endpoint-body">
-                        <h5>Request Body</h5>
+                        <h3>Request Body</h3>
                         <div class="api-code">{ "order": ["chapter-2", "chapter-1", "chapter-3"] }</div>
-                        <h5>curl</h5>
+                        <h3>curl</h3>
                         <div class="api-code">curl -X PATCH http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/reorder \
   -H "Content-Type: application/json" \
   -d '{"order":["personal","intro","background"]}'</div>
                     </div>
                 </div>
             </div>
+            </main>
         </div>
     </div>
 </body>

@@ -9,60 +9,64 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">דלג לתוכן הראשי</a>
+
     <div class="index-bg">
         <div class="container">
             <header class="index-header">
-                <h1><i class="fas fa-balance-scale" style="color: var(--accent); margin-left: 12px;"></i>מצגת טיעונים</h1>
+                <h1><i class="fas fa-balance-scale" aria-hidden="true" style="color: var(--accent); margin-left: 12px;"></i>מצגת טיעונים</h1>
                 <p>בחר תיק לצפייה במסמכי הטיעון</p>
                 <div class="accent-line"></div>
-                <button class="btn-add-case" id="addCaseBtn" title="הוסף תיק חדש">
-                    <i class="fas fa-plus"></i> הוסף תיק
+                <button class="btn-add-case" id="addCaseBtn" aria-label="הוסף תיק חדש">
+                    <i class="fas fa-plus" aria-hidden="true"></i> הוסף תיק
                 </button>
             </header>
 
-            <div id="cases-container" class="row g-4 pb-5">
-            </div>
+            <main id="main-content">
+                <div id="cases-container" class="row g-4 pb-5" role="list" aria-label="רשימת תיקים">
+                </div>
+            </main>
 
-            <div id="loading" class="text-center py-5">
+            <div id="loading" class="text-center py-5" aria-live="polite">
                 <div class="spinner-border text-info" role="status" style="color: var(--accent) !important;">
                     <span class="visually-hidden">טוען...</span>
                 </div>
             </div>
 
-            <div id="error" class="text-center py-5" style="display: none;">
-                <i class="fas fa-exclamation-triangle fa-3x mb-3" style="color: var(--text-muted);"></i>
+            <div id="error" class="text-center py-5" style="display: none;" role="alert">
+                <i class="fas fa-exclamation-triangle fa-3x mb-3" aria-hidden="true" style="color: var(--text-muted);"></i>
                 <p style="color: var(--text-muted);">לא נמצאו תיקים. לחץ על "הוסף תיק" כדי להתחיל.</p>
             </div>
 
-            <footer class="index-footer">
-                <a href="api-docs.html"><i class="fas fa-book"></i> תיעוד API</a>
-            </footer>
+            <nav class="index-footer" aria-label="ניווט אתר">
+                <a href="api-docs.html"><i class="fas fa-book" aria-hidden="true"></i> תיעוד API</a>
+            </nav>
         </div>
     </div>
 
     <!-- Case Modal -->
-    <div class="modal-overlay" id="caseModal">
+    <div class="modal-overlay" id="caseModal" role="dialog" aria-modal="true" aria-labelledby="caseModalTitle">
         <div class="modal-box">
             <div class="modal-header">
-                <h4 id="caseModalTitle">הוסף תיק חדש</h4>
-                <button class="close-btn" id="caseModalClose"><i class="fas fa-times"></i></button>
+                <h2 id="caseModalTitle">הוסף תיק חדש</h2>
+                <button class="close-btn" id="caseModalClose" aria-label="סגור"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="caseEditId">
                 <div class="form-group">
-                    <label>מזהה (באנגלית, ללא רווחים)</label>
+                    <label for="caseIdInput">מזהה (באנגלית, ללא רווחים)</label>
                     <input type="text" id="caseIdInput" placeholder="my-case" dir="ltr">
                 </div>
                 <div class="form-group">
-                    <label>שם התיק</label>
+                    <label for="caseTitleInput">שם התיק</label>
                     <input type="text" id="caseTitleInput" placeholder="שם הלקוח / התיק">
                 </div>
                 <div class="form-group">
-                    <label>כותרת משנה (מספר תיק)</label>
+                    <label for="caseSubtitleInput">כותרת משנה (מספר תיק)</label>
                     <input type="text" id="caseSubtitleInput" placeholder='פל"א 123/2024' dir="ltr">
                 </div>
                 <div class="form-group">
-                    <label>אייקון</label>
+                    <label for="caseIconSelect">אייקון</label>
                     <select id="caseIconSelect">
                         <option value="fa-gavel">פטיש (ברירת מחדל)</option>
                         <option value="fa-balance-scale">מאזניים</option>
@@ -76,40 +80,40 @@
             </div>
             <div class="modal-footer">
                 <button class="btn-cancel" id="caseModalCancel">ביטול</button>
-                <button class="btn-save" id="caseModalSave"><i class="fas fa-check"></i> שמור</button>
+                <button class="btn-save" id="caseModalSave"><i class="fas fa-check" aria-hidden="true"></i> שמור</button>
             </div>
         </div>
     </div>
 
     <!-- Document Modal -->
-    <div class="modal-overlay" id="docModal">
+    <div class="modal-overlay" id="docModal" role="dialog" aria-modal="true" aria-labelledby="docModalTitle">
         <div class="modal-box">
             <div class="modal-header">
-                <h4>הוסף מסמך חדש</h4>
-                <button class="close-btn" id="docModalClose"><i class="fas fa-times"></i></button>
+                <h2 id="docModalTitle">הוסף מסמך חדש</h2>
+                <button class="close-btn" id="docModalClose" aria-label="סגור"><i class="fas fa-times" aria-hidden="true"></i></button>
             </div>
             <div class="modal-body">
                 <input type="hidden" id="docCaseId">
                 <div class="form-group">
-                    <label>מזהה (באנגלית, ללא רווחים)</label>
+                    <label for="docIdInput">מזהה (באנגלית, ללא רווחים)</label>
                     <input type="text" id="docIdInput" placeholder="hearing-arguments" dir="ltr">
                 </div>
                 <div class="form-group">
-                    <label>כותרת המסמך</label>
+                    <label for="docTitleInput">כותרת המסמך</label>
                     <input type="text" id="docTitleInput" placeholder="בקשה להימנע מהגשת כתב אישום">
                 </div>
                 <div class="form-group">
-                    <label>תאריך</label>
+                    <label for="docDateInput">תאריך</label>
                     <input type="text" id="docDateInput" placeholder="2025" dir="ltr">
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn-cancel" id="docModalCancel">ביטול</button>
-                <button class="btn-save" id="docModalSave"><i class="fas fa-check"></i> שמור</button>
+                <button class="btn-save" id="docModalSave"><i class="fas fa-check" aria-hidden="true"></i> שמור</button>
             </div>
         </div>
     </div>
 
-    <script src="js/app.js?v=2"></script>
+    <script src="js/app.js?v=3"></script>
 </body>
 </html>

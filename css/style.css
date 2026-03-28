@@ -16,7 +16,7 @@
     --accent-dim: rgba(245, 158, 11, 0.12);
     --text-primary: #e8e8e8;
     --text-secondary: #b0b0b0;
-    --text-muted: #7a7a8a;
+    --text-muted: #a0a0b0;
     --card-bg: rgba(255, 255, 255, 0.06);
     --card-bg-hover: rgba(255, 255, 255, 0.10);
     --card-border: rgba(255, 255, 255, 0.10);
@@ -49,7 +49,7 @@
     --accent-dim: rgba(44, 83, 100, 0.10);
     --text-primary: #333333;
     --text-secondary: #495057;
-    --text-muted: #6c757d;
+    --text-muted: #505860;
     --card-bg: #ffffff;
     --card-bg-hover: #f8f9fa;
     --card-border: #e9ecef;
@@ -428,7 +428,6 @@ body {
     font-size: 0.75rem;
     width: 20px;
     text-align: center;
-    opacity: 0.6;
 }
 
 .toc-link .chapter-num {
@@ -930,12 +929,7 @@ body {
     font-size: 0.75rem;
     color: var(--text-muted);
     z-index: 500;
-    opacity: 0.6;
     transition: opacity var(--transition);
-}
-
-.kbd-hint:hover {
-    opacity: 1;
 }
 
 .kbd-hint kbd {
@@ -1041,6 +1035,66 @@ body {
     .chapter-nav-btn {
         max-width: 100%;
         width: 100%;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY — Skip Link
+   ============================================ */
+
+.skip-link {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 20px;
+    z-index: 10000;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0 0 0 8px;
+    transition: top 0.2s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ============================================
+   ACCESSIBILITY — Focus Visible
+   ============================================ */
+
+*:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+    border-color: var(--accent);
+}
+
+/* ============================================
+   ACCESSIBILITY — Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .chapter-enter {
+        animation: none;
     }
 }
 
@@ -1327,7 +1381,6 @@ body {
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    outline: none;
     border-color: var(--accent);
 }
 
@@ -1629,15 +1682,16 @@ body {
     display: block;
 }
 
-.api-endpoint-body h5 {
+.api-endpoint-body h3 {
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-muted);
     margin: 12px 0 6px;
+    font-weight: 600;
 }
 
-.api-endpoint-body h5:first-child {
+.api-endpoint-body h3:first-child {
     margin-top: 0;
 }
 

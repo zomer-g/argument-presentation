@@ -124,10 +124,10 @@ const ViewerApp = {
             if (this.editMode && ch.level === 0) {
                 editControls = `
                     <span class="toc-edit-actions">
-                        <span class="toc-action-btn" data-action="edit" data-ch="${ch.id}" title="ערוך"><i class="fas fa-pen"></i></span>
-                        <span class="toc-action-btn" data-action="up" data-ch="${ch.id}" title="הזז למעלה"><i class="fas fa-arrow-up"></i></span>
-                        <span class="toc-action-btn" data-action="down" data-ch="${ch.id}" title="הזז למטה"><i class="fas fa-arrow-down"></i></span>
-                        <span class="toc-action-btn danger" data-action="delete" data-ch="${ch.id}" title="מחק"><i class="fas fa-trash-alt"></i></span>
+                        <button class="toc-action-btn" data-action="edit" data-ch="${esc(ch.id)}" aria-label="ערוך פרק"><i class="fas fa-pen" aria-hidden="true"></i></button>
+                        <button class="toc-action-btn" data-action="up" data-ch="${esc(ch.id)}" aria-label="הזז למעלה"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+                        <button class="toc-action-btn" data-action="down" data-ch="${esc(ch.id)}" aria-label="הזז למטה"><i class="fas fa-arrow-down" aria-hidden="true"></i></button>
+                        <button class="toc-action-btn danger" data-action="delete" data-ch="${esc(ch.id)}" aria-label="מחק פרק"><i class="fas fa-trash-alt" aria-hidden="true"></i></button>
                     </span>
                 `;
             }
@@ -278,8 +278,10 @@ const ViewerApp = {
     },
 
     updateProgress() {
-        const progress = ((this.currentIndex + 1) / this.flatChapters.length) * 100;
-        document.getElementById('readingProgress').style.width = progress + '%';
+        const progress = Math.round(((this.currentIndex + 1) / this.flatChapters.length) * 100);
+        const el = document.getElementById('readingProgress');
+        el.style.width = progress + '%';
+        el.setAttribute('aria-valuenow', progress);
     },
 
     // ── Edit Mode ───────────────────────────────────────
@@ -289,6 +291,7 @@ const ViewerApp = {
         const btn = document.getElementById('editModeToggle');
         const banner = document.getElementById('editModeBanner');
 
+        btn.setAttribute('aria-pressed', this.editMode);
         if (this.editMode) {
             btn.classList.add('active-action');
             banner.style.display = 'flex';
@@ -452,8 +455,12 @@ const ViewerApp = {
         // Sidebar tabs
         document.querySelectorAll('.sidebar-tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                document.querySelectorAll('.sidebar-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.sidebar-tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.setAttribute('aria-selected', 'false');
+                });
                 tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
                 const tabName = tab.dataset.tab;
                 document.getElementById('tocTab').style.display = tabName === 'toc' ? '' : 'none';
                 document.getElementById('entitiesTab').style.display = tabName === 'entities' ? '' : 'none';

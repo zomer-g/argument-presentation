@@ -88,13 +88,20 @@ const CaseManager = {
                 </div>
             `;
 
-            // Click handler on each document item (navigate to viewer)
+            // Click/keyboard handler on each document item (navigate to viewer)
             col.querySelectorAll('.doc-list li').forEach(li => {
-                li.addEventListener('click', (e) => {
+                li.setAttribute('tabindex', '0');
+                li.setAttribute('role', 'link');
+                const navigate = (e) => {
                     if (e.target.closest('.delete-doc-btn')) return;
-                    const caseId = li.dataset.case;
-                    const docId = li.dataset.doc;
-                    window.location.href = `viewer.html?case=${caseId}&doc=${docId}`;
+                    window.location.href = `viewer.html?case=${li.dataset.case}&doc=${li.dataset.doc}`;
+                };
+                li.addEventListener('click', navigate);
+                li.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        navigate(e);
+                    }
                 });
             });
 

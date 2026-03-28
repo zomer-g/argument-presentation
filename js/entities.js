@@ -105,7 +105,7 @@ const EntityProcessor = {
             attrs += ` data-page="${esc(String(page))}"`;
         }
 
-        return `<span class="entity-badge ${esc(cssClass)}" ${attrs} onclick="EntityProcessor.onBadgeClick(this, event)"><i class="fas ${esc(icon)}"></i> ${esc(label)}</span>`;
+        return `<span class="entity-badge ${esc(cssClass)}" ${attrs} tabindex="0" role="button" onclick="EntityProcessor.onBadgeClick(this, event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();EntityProcessor.onBadgeClick(this,event)}"><i class="fas ${esc(icon)}" aria-hidden="true"></i> ${esc(label)}</span>`;
     },
 
     /**
