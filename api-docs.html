@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="api-docs-bg">
+        <div class="container" style="max-width: 900px;">
+            <a href="index.html" class="api-back-link"><i class="fas fa-arrow-right"></i> חזרה לעמוד הראשי</a>
+
+            <div class="api-docs-header">
+                <h1><i class="fas fa-book" style="color: var(--accent); margin-left: 10px;"></i>API Documentation</h1>
+                <p>REST API for managing cases, documents, and chapters</p>
+                <p style="font-size: 0.82rem; color: var(--text-muted); direction: ltr;">Base URL: <code>http://localhost:8080/api</code></p>
+            </div>
+
+            <!-- Cases -->
+            <div class="api-section">
+                <h2><i class="fas fa-briefcase" style="margin-left: 8px;"></i>Cases</h2>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases</span>
+                        <span class="api-desc">List all cases</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Response</h5>
+                        <div class="api-code">{ "cases": [{ "id": "omar-duanias", "title": "...", "subtitle": "...", "icon": "fa-gavel", "documents": [...] }] }</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases/:caseId</span>
+                        <span class="api-desc">Get single case</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Response</h5>
+                        <div class="api-code">{ "id": "omar-duanias", "title": "...", "subtitle": "...", "icon": "fa-gavel", "documents": [...] }</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/cases</span>
+                        <span class="api-desc">Create a new case</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{
+  "id": "my-case",
+  "title": "Case Title",
+  "subtitle": "Case Number",
+  "icon": "fa-gavel",
+  "documents": []
+}</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X POST http://localhost:8080/api/cases \
+  -H "Content-Type: application/json" \
+  -d '{"id":"my-case","title":"Case Title","subtitle":"123/2025","documents":[]}'</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-put">PUT</span>
+                        <span class="api-path">/api/cases/:caseId</span>
+                        <span class="api-desc">Update case metadata</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "title": "New Title", "subtitle": "New Subtitle", "icon": "fa-balance-scale" }</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X PUT http://localhost:8080/api/cases/my-case \
+  -H "Content-Type: application/json" \
+  -d '{"title":"Updated Title"}'</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-delete">DELETE</span>
+                        <span class="api-path">/api/cases/:caseId</span>
+                        <span class="api-desc">Delete case and all its files</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/my-case</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documents -->
+            <div class="api-section">
+                <h2><i class="fas fa-file-alt" style="margin-left: 8px;"></i>Documents</h2>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases/:caseId/docs</span>
+                        <span class="api-desc">List documents in a case</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/cases/:caseId/docs</span>
+                        <span class="api-desc">Add a document to a case</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "id": "my-doc", "title": "Document Title", "date": "2025" }</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X POST http://localhost:8080/api/cases/omar-duanias/docs \
+  -H "Content-Type: application/json" \
+  -d '{"id":"my-doc","title":"Document Title","date":"2025"}'</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId</span>
+                        <span class="api-desc">Get full document (meta, entities, chapters)</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-put">PUT</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId</span>
+                        <span class="api-desc">Replace entire document JSON</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "meta": {...}, "entities": {...}, "chapters": [...] }</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-patch">PATCH</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/meta</span>
+                        <span class="api-desc">Update document metadata</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "title": "New Document Title", "author": "Name" }</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-patch">PATCH</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/entities</span>
+                        <span class="api-desc">Update document entities</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "people": [...], "organizations": [...] }</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-delete">DELETE</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId</span>
+                        <span class="api-desc">Delete document and its files</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/omar-duanias/docs/my-doc</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapters -->
+            <div class="api-section">
+                <h2><i class="fas fa-bookmark" style="margin-left: 8px;"></i>Chapters</h2>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters</span>
+                        <span class="api-desc">List all chapters</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
+                        <span class="api-desc">Get single chapter</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/intro</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters</span>
+                        <span class="api-desc">Add a new chapter</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{
+  "id": "new-chapter",
+  "title": "Chapter Title",
+  "icon": "fa-bookmark",
+  "content": "&lt;p&gt;Chapter HTML content&lt;/p&gt;",
+  "after": "intro"          // optional: insert after this chapter
+}</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X POST http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters \
+  -H "Content-Type: application/json" \
+  -d '{"id":"new-ch","title":"New Chapter","content":"&lt;p&gt;Content&lt;/p&gt;"}'</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-put">PUT</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
+                        <span class="api-desc">Update chapter content/title/icon</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "title": "New Title", "icon": "fa-gavel", "content": "&lt;p&gt;Updated content&lt;/p&gt;" }</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-delete">DELETE</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/:chapterId</span>
+                        <span class="api-desc">Delete a chapter</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X DELETE http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/new-ch</div>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header" onclick="this.nextElementSibling.classList.toggle('open')">
+                        <span class="api-method method-patch">PATCH</span>
+                        <span class="api-path">/api/cases/:caseId/docs/:docId/chapters/reorder</span>
+                        <span class="api-desc">Reorder chapters</span>
+                        <i class="fas fa-chevron-down" style="color: var(--text-muted); font-size: 0.7rem;"></i>
+                    </div>
+                    <div class="api-endpoint-body">
+                        <h5>Request Body</h5>
+                        <div class="api-code">{ "order": ["chapter-2", "chapter-1", "chapter-3"] }</div>
+                        <h5>curl</h5>
+                        <div class="api-code">curl -X PATCH http://localhost:8080/api/cases/omar-duanias/docs/hearing-arguments/chapters/reorder \
+  -H "Content-Type: application/json" \
+  -d '{"order":["personal","intro","background"]}'</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
